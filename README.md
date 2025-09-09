@@ -41,7 +41,21 @@ helm repo add grafana https://grafana.github.io/helm-charts
 
 helm repo update
 
-<img width="943" height="158" alt="image" src="https://github.com/user-attachments/assets/5d662887-592b-41d6-adb1-748647988ff5" />
+<img width="917" height="230" alt="image" src="https://github.com/user-attachments/assets/3848ec8a-8217-4cd5-9f6c-8c0c868b7763" />
+
+now , we need to install Prometheus using the following command:
+
+helm install prometheus prometheus-community/prometheus
+
+<img width="1133" height="852" alt="image" src="https://github.com/user-attachments/assets/0b197bf4-5afe-4d2b-a57b-ff8e9335edcc" />
+
+We can expose the prometheus-server service to the internet using nodeport but the GUI provided by prometheus is not as good as the one provided by Grafana. We can use the following command for the same:
+
+kubectl expose service prometheus-server — type=NodePort — target-port=9090 — name=prometheus-server-ext
+
+minikube service prometheus-server-ext
+
+
 
 
 

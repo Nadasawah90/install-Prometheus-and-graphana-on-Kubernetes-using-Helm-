@@ -33,5 +33,15 @@ download helm package from my device to master node
 
 <img width="966" height="240" alt="image" src="https://github.com/user-attachments/assets/b8010159-ad89-4789-9917-f731f8772555" />
 
+2- Download repositorires for promethous 
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+helm repo add grafana https://grafana.github.io/helm-charts
+
+helm repo update
+
+<img width="943" height="158" alt="image" src="https://github.com/user-attachments/assets/5d662887-592b-41d6-adb1-748647988ff5" />
+
 
 

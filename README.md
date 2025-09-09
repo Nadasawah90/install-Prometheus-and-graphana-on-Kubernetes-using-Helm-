@@ -90,7 +90,7 @@ now , we need to install Prometheus using the following command:
 
 helm install prometheus prometheus-community/prometheus
 
-<img width="1133" height="852" alt="image" src="https://github.com/user-attachments/assets/0b197bf4-5afe-4d2b-a57b-ff8e9335edcc" />
+<img width="1902" height="907" alt="image" src="https://github.com/user-attachments/assets/6f1157cc-6c7f-4b03-b748-6a6485cba952" />
 
 We can expose the prometheus-server service to the internet using nodeport but the GUI provided by prometheus is not as good as the one provided by Grafana. We can use the following command for the same:
 

@@ -113,20 +113,25 @@ helm install grafana grafana/grafana \
   --namespace monitoring --create-namespace \
   --set adminUser=admin \
   --set adminPassword='admin' \
-  --set service.type=LoadBalancer
+
 <img width="1860" height="583" alt="image" src="https://github.com/user-attachments/assets/6ac41ae0-da8e-414b-8ec7-217018761dfa" />
+
 NodePort (accessible outside the cluster)
 kubectl -n monitoring patch svc grafana -p '{"spec": {"type": "NodePort"}}'
+
 kubectl get svc grafana -n monitoring
 
 <img width="813" height="116" alt="image" src="https://github.com/user-attachments/assets/2d49a869-b3d2-44ee-a672-6af544a16bc5" />
 
 <img width="1882" height="1022" alt="image" src="https://github.com/user-attachments/assets/d3d5a525-7a76-46c6-b639-4f0a6e3d1e1b" />
 
-[root@master01 ~]# helm upgrade grafana grafana/grafana \
-  --namespace monitoring \
-  --set adminUser=admin \
-  --set adminPassword=admin
+<img width="1886" height="922" alt="image" src="https://github.com/user-attachments/assets/2d7a9a9c-aabc-41a2-aa15-b730dbedb785" />
+
+## integrate graphana with promethous : 
+
+
+
+
   
   ### issue :
 1- we should make sure from Kube-flannel is instalaltion well to create pods well 

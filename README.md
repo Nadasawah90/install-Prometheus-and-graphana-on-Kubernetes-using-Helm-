@@ -129,7 +129,13 @@ kubectl get svc grafana -n monitoring
 
 ## integrate graphana with promethous : 
 
+add user name : admin with password admin and change password to be admin123 
 
+ add details of promethous  
+
+<img width="1915" height="943" alt="image" src="https://github.com/user-attachments/assets/f900748b-6be4-48f3-934a-3570ad6433ff" />
+
+<img width="1872" height="936" alt="image" src="https://github.com/user-attachments/assets/5ee3539a-ba57-45e0-8cb8-33cc977d4562" />
 
 
   
@@ -167,6 +173,19 @@ and change CIDR to be matched 192.168.0.0/16 netwrk
 it is working fine after that 
 
 <img width="1918" height="852" alt="image" src="https://github.com/user-attachments/assets/1b876211-c315-4413-b15b-cb246811d81f" />
+
+4- Error reading Prometheus: PGrafana Pod → 192.168.2.4 (on worker02)
+
+Prometheus Pod → 192.168.1.3 (on worker01)ost "http://localhost:9090/api/v1/query": dial tcp 127.0.0.1:9090: connect: connection refused  
+when communicte grrapahan with API of promethous i found the pods can not talk to gether as i can not ping from grapahan pod tp promethouds pod 
+
+delete pods and recreate it automially to be int he same worker to take the same ip subent as belwo : 
+
+<img width="1897" height="412" alt="image" src="https://github.com/user-attachments/assets/9a677f8a-01da-4caf-96d0-8d8304b10a3a" />
+
+
+
+
 
 
 

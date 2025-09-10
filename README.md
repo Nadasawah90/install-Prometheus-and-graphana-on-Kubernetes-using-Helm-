@@ -88,7 +88,11 @@ helm repo update
 
 now , we need to install Prometheus using the following command:
 
-helm install prometheus prometheus-community/prometheus
+helm install prometheus prometheus-community/prometheus 
+
+helm upgrade prometheus prometheus-community/prometheus -n monitoring -f minimal-values.yaml
+
+to skip creating PV , PVC to be start promenthous without issue related to the limitation of vagarnt file .
 
 <img width="1902" height="907" alt="image" src="https://github.com/user-attachments/assets/6f1157cc-6c7f-4b03-b748-6a6485cba952" />
 
@@ -123,9 +127,41 @@ kubectl get svc grafana -n monitoring
   --namespace monitoring \
   --set adminUser=admin \
   --set adminPassword=admin
+  
+  ### issue :
+1- we should make sure from Kube-flannel is instalaltion well to create pods well 
+
+[root@master01 ~]# kubectl get pods -n kube-flannel
+
+NAME                    READY   STATUS    RESTARTS   AGE
+kube-flannel-ds-9vkk6   1/1     Running   0          28s
+kube-flannel-ds-hxnpz   1/1     Running   0          28s
+kube-flannel-ds-zsvck   1/1     Running   0          28s
+2- related to the limitation of vagrant to create PV and  PVC  cretae yaml file to skip the issue of cresation promethous 
+[root@master01 ~]# cat minimal-values.yaml
+server:
+  persistentVolume:
+    enabled: false
+alertmanager:
+  persistentVolume:
+    enabled: false
+pushgateway:
+  persistentVolume:
+    enabled: false
 
 
+3- i have iisue with flannel cni 
 
+<img width="1907" height="401" alt="image" src="https://github.com/user-attachments/assets/7d56654d-72cd-4fe6-a868-51b92781c55e" />
+  
+kubectl -n kube-flannel edit cm kube-flannel-cfg
+and change CIDR to be matched 192.168.0.0/16 netwrk 
+
+<img width="320" height="190" alt="image" src="https://github.com/user-attachments/assets/bd8d7789-2c40-4902-8c4c-dece18c2952c" />
+
+it is working fine after that 
+
+<img width="1918" height="852" alt="image" src="https://github.com/user-attachments/assets/1b876211-c315-4413-b15b-cb246811d81f" />
 
 
 

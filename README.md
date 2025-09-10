@@ -60,7 +60,7 @@ We can create our own dashboards or use the existing ones provided by Grafana. W
 
 1- install Helm using this link using this link >>  https://helm.sh/docs/intro/install/
 
-download helm package from my device to master node 
+## download helm package from my device to master node 
   tar -zxvf helm-v3.19.0-rc.1-linux-amd64.tar.gz
   mv linux-amd64/helm /usr/local/bin/helm
   echo $PATH
@@ -76,7 +76,7 @@ download helm package from my device to master node
 
 <img width="966" height="240" alt="image" src="https://github.com/user-attachments/assets/b8010159-ad89-4789-9917-f731f8772555" />
 
-2- Download repositorires for promethous 
+###  Download repositorires for promethous 
 
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
@@ -92,11 +92,41 @@ helm install prometheus prometheus-community/prometheus
 
 <img width="1902" height="907" alt="image" src="https://github.com/user-attachments/assets/6f1157cc-6c7f-4b03-b748-6a6485cba952" />
 
-We can expose the prometheus-server service to the internet using nodeport but the GUI provided by prometheus is not as good as the one provided by Grafana. We can use the following command for the same:
+1. Patch the Prometheus service to NodePort as it is locally only 
 
-kubectl expose service prometheus-server — type=NodePort — target-port=9090 — name=prometheus-server-ext
+<img width="1087" height="145" alt="image" src="https://github.com/user-attachments/assets/0771bd3d-cc55-4bd2-b9c9-cf4887486e67" />
 
-minikube service prometheus-server-ext
+
+kubectl -n monitoring patch svc prometheus-server -p '{"spec": {"type": "NodePort"}}'
+
+<img width="886" height="73" alt="image" src="https://github.com/user-attachments/assets/c3515d69-fbd3-412d-82cf-1e5933858ee1" />
+
+
+<img width="1908" height="952" alt="image" src="https://github.com/user-attachments/assets/137baf4e-d598-49b0-99d9-7ed225e1fef8" />
+
+### Graphana using helm 
+helm install grafana grafana/grafana \
+  --namespace monitoring --create-namespace \
+  --set adminUser=admin \
+  --set adminPassword='admin' \
+  --set service.type=LoadBalancer
+<img width="1860" height="583" alt="image" src="https://github.com/user-attachments/assets/6ac41ae0-da8e-414b-8ec7-217018761dfa" />
+NodePort (accessible outside the cluster)
+kubectl -n monitoring patch svc grafana -p '{"spec": {"type": "NodePort"}}'
+kubectl get svc grafana -n monitoring
+
+<img width="813" height="116" alt="image" src="https://github.com/user-attachments/assets/2d49a869-b3d2-44ee-a672-6af544a16bc5" />
+
+<img width="1882" height="1022" alt="image" src="https://github.com/user-attachments/assets/d3d5a525-7a76-46c6-b639-4f0a6e3d1e1b" />
+
+[root@master01 ~]# helm upgrade grafana grafana/grafana \
+  --namespace monitoring \
+  --set adminUser=admin \
+  --set adminPassword=admin
+
+
+
+
 
 
 

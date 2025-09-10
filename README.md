@@ -108,6 +108,9 @@ kubectl -n monitoring patch svc prometheus-server -p '{"spec": {"type": "NodePor
 
 <img width="1908" height="952" alt="image" src="https://github.com/user-attachments/assets/137baf4e-d598-49b0-99d9-7ed225e1fef8" />
 
+use 315 → Kubernetes cluster monitoring (via Prometheus)
+
+
 ### Graphana using helm 
 helm install grafana grafana/grafana \
   --namespace monitoring --create-namespace \

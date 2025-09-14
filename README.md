@@ -1,4 +1,4 @@
-# install-Prometheus-and-graphana-on-Kubernetes-using-Helm-
+# Install-Prometheus-and-graphana-on-Kubernetes-using-Helm-
 ## Helm 
 is the package manager for Kubernetes.
 It allows us to streamline installation and management of Kubernetes applications.

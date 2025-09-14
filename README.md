@@ -91,7 +91,7 @@ use 315 → Kubernetes cluster monitoring (via Prometheus)
 
 helm install grafana grafana/grafana \
 
-  --namespace monitoring --create-namespace \
+   -n monitoring  \
 
   --set adminUser=admin \
 
@@ -121,6 +121,11 @@ add user name : admin with password admin and change password to be admin123
 
 <img width="1872" height="936" alt="image" src="https://github.com/user-attachments/assets/5ee3539a-ba57-45e0-8cb8-33cc977d4562" />
 
+
+Download Json File for specicifc dashboard and import it 
+
+
+<img width="1886" height="926" alt="image" src="https://github.com/user-attachments/assets/5368c382-f49b-4ddd-bf65-250cbb281a0a" />
 
   
   ### Issue :

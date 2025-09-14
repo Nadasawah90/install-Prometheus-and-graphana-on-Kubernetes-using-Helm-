@@ -190,6 +190,7 @@ delete pods and recreate it automially to be in  the same worker to take the sam
 <img width="1897" height="412" alt="image" src="https://github.com/user-attachments/assets/9a677f8a-01da-4caf-96d0-8d8304b10a3a" />
 
 
+<img width="1517" height="561" alt="image" src="https://github.com/user-attachments/assets/3eb71f54-30b2-4061-8ae2-497507205a86" />
 
 
 

@@ -177,9 +177,10 @@ it is working fine after that
 4- Error reading Prometheus: PGrafana Pod → 192.168.2.4 (on worker02)
 
 Prometheus Pod → 192.168.1.3 (on worker01)ost "http://localhost:9090/api/v1/query": dial tcp 127.0.0.1:9090: connect: connection refused  
+
 when communicte grrapahan with API of promethous i found the pods can not talk to gether as i can not ping from grapahan pod tp promethouds pod 
 
-delete pods and recreate it automially to be int he same worker to take the same ip subent as belwo : 
+delete pods and recreate it automially to be in  the same worker to take the same ip subent as belwo : 
 
 <img width="1897" height="412" alt="image" src="https://github.com/user-attachments/assets/9a677f8a-01da-4caf-96d0-8d8304b10a3a" />
 

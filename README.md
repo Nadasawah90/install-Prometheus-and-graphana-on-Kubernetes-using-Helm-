@@ -64,7 +64,7 @@ helm repo update
 
 now , we need to install Prometheus using the following command:
 
-helm install prometheus prometheus-community/prometheus 
+helm install prometheus prometheus-community/prometheus -n monitoring 
 
 helm upgrade prometheus prometheus-community/prometheus -n monitoring -f minimal-values.yaml
 

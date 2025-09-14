@@ -27,12 +27,12 @@ We can create our own dashboards or use the existing ones provided by Grafana. W
 
 +-------------------+       +-------------------+
 | Node Exporter     |       | Node Exporter     |
-| (on Worker Node1) |  ...  | (on Worker NodeN) |
+   |
 +---------+---------+       +---------+---------+
           |                           |
           +---------------------------+
                       |
-                      v
+                      
              +-----------------+
              |                 |
              | Prometheus      |
@@ -42,7 +42,7 @@ We can create our own dashboards or use the existing ones provided by Grafana. W
                  |         |
      ------------+         +------------
      |                                |
-     v                                v
+                                    
 +------------+                 +--------------+
 | Kube-State |                 | Pushgateway  |
 |  Metrics   |                 | (batch jobs) |

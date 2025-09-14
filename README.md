@@ -23,6 +23,8 @@ It provides charts, graphs and alerts for the web when connected to supported da
 Grafana allows us to query, visualize, alert on and understand our metrics, no matter where they are stored. Some supported data sources in addition to Prometheus are AWS CloudWatch, AzureMonitor, PostgreSQL, Elasticsearch and many more.
 
 We can create our own dashboards or use the existing ones provided by Grafana. We can personalize the dashboards as per our requirements.
+
+
 +-------------------+       +-------------------+
 | Node Exporter     |       | Node Exporter     |
 | (on Worker Node1) |  ...  | (on Worker NodeN) |

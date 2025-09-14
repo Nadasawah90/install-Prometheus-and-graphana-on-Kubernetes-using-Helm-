@@ -1,16 +1,27 @@
 # Install-Prometheus-and-graphana-on-Kubernetes-using-Helm-
 ## Helm 
 is the package manager for Kubernetes.
+
 It allows us to streamline installation and management of Kubernetes applications.
+
 Helms use a packaging format called as Charts which is basically a collection of yaml manifest files
+
 ## Promenthous 
+
 Prometheus is an Open-source systems monitoring and alerting toolkit.
+
 Prometheus collects and stores the metrics as time series data.
+
 It provides out-of-box monitoring capabilities for container orchestration platforms such as Kubernetes.
+
 ## Graphana 
+
 Grafana is a multi-platform Open-source analytics and interactive visualization web application.
+
 It provides charts, graphs and alerts for the web when connected to supported data services.
+
 Grafana allows us to query, visualize, alert on and understand our metrics, no matter where they are stored. Some supported data sources in addition to Prometheus are AWS CloudWatch, AzureMonitor, PostgreSQL, Elasticsearch and many more.
+
 We can create our own dashboards or use the existing ones provided by Grafana. We can personalize the dashboards as per our requirements.
 +-------------------+       +-------------------+
 | Node Exporter     |       | Node Exporter     |
@@ -61,15 +72,25 @@ We can create our own dashboards or use the existing ones provided by Grafana. W
 1- install Helm using this link using this link >>  https://helm.sh/docs/intro/install/
 
 ## download helm package from my device to master node 
+
   tar -zxvf helm-v3.19.0-rc.1-linux-amd64.tar.gz
+
   mv linux-amd64/helm /usr/local/bin/helm
+
   echo $PATH
+
   export PATH=$PATH:/usr/local/bin
+
   echo $PATH
+
   echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+
   source ~/.bashrc
+
   /usr/local/bin/helm version
+
    helm version
+
 <img width="1370" height="201" alt="image" src="https://github.com/user-attachments/assets/8b8fc1a0-d303-48a9-b069-c5a0648c9ae1" />
 
 <img width="1592" height="87" alt="image" src="https://github.com/user-attachments/assets/1ef6354e-4eb0-4d1d-a079-30a1fb410bf0" />
@@ -112,14 +133,19 @@ use 315 → Kubernetes cluster monitoring (via Prometheus)
 
 
 ### Graphana using helm 
+
 helm install grafana grafana/grafana \
+
   --namespace monitoring --create-namespace \
+
   --set adminUser=admin \
+
   --set adminPassword='admin' \
 
 <img width="1860" height="583" alt="image" src="https://github.com/user-attachments/assets/6ac41ae0-da8e-414b-8ec7-217018761dfa" />
 
 NodePort (accessible outside the cluster)
+
 kubectl -n monitoring patch svc grafana -p '{"spec": {"type": "NodePort"}}'
 
 kubectl get svc grafana -n monitoring
@@ -142,33 +168,49 @@ add user name : admin with password admin and change password to be admin123
 
 
   
-  ### issue :
+  ### Issue :
+
 1- we should make sure from Kube-flannel is instalaltion well to create pods well 
 
 [root@master01 ~]# kubectl get pods -n kube-flannel
 
 NAME                    READY   STATUS    RESTARTS   AGE
+
 kube-flannel-ds-9vkk6   1/1     Running   0          28s
+
 kube-flannel-ds-hxnpz   1/1     Running   0          28s
+
 kube-flannel-ds-zsvck   1/1     Running   0          28s
+
 2- related to the limitation of vagrant to create PV and  PVC  cretae yaml file to skip the issue of cresation promethous 
+
 [root@master01 ~]# cat minimal-values.yaml
+
 server:
+
   persistentVolume:
+
     enabled: false
+
 alertmanager:
+
   persistentVolume:
+
     enabled: false
+
 pushgateway:
+
   persistentVolume:
+
     enabled: false
 
 
-3- i have iisue with flannel cni 
+3- i have issue with flannel cni 
 
 <img width="1907" height="401" alt="image" src="https://github.com/user-attachments/assets/7d56654d-72cd-4fe6-a868-51b92781c55e" />
   
 kubectl -n kube-flannel edit cm kube-flannel-cfg
+
 and change CIDR to be matched 192.168.0.0/16 netwrk 
 
 <img width="320" height="190" alt="image" src="https://github.com/user-attachments/assets/bd8d7789-2c40-4902-8c4c-dece18c2952c" />

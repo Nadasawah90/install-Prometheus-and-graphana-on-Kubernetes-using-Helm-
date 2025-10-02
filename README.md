@@ -1,6 +1,6 @@
 # Install-Prometheus-and-graphana-on-Kubernetes-using-Helm-
 ## Helm 
-is the package manager for Kubernetes.
+Is the package manager for Kubernetes.
 
 It allows us to streamline installation and management of Kubernetes applications.
 
@@ -24,9 +24,9 @@ Grafana allows us to query, visualize, alert on and understand our metrics, no m
 
 ### prerequistes :
 
-1- install Helm using this link using this link >>  https://helm.sh/docs/intro/install/
+## 1- install Helm using this link using this link >>  https://helm.sh/docs/intro/install/
 
-## download helm package from my device to master node 
+download helm package from my device to master node 
 
   tar -zxvf helm-v3.19.0-rc.1-linux-amd64.tar.gz
 
@@ -52,7 +52,7 @@ Grafana allows us to query, visualize, alert on and understand our metrics, no m
 
 <img width="966" height="240" alt="image" src="https://github.com/user-attachments/assets/b8010159-ad89-4789-9917-f731f8772555" />
 
-###  Download repositorires for promethous 
+## 2- Download repositorires for promethous 
 
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
@@ -62,17 +62,19 @@ helm repo update
 
 <img width="917" height="230" alt="image" src="https://github.com/user-attachments/assets/3848ec8a-8217-4cd5-9f6c-8c0c868b7763" />
 
-now , we need to install Prometheus using the following command:
+## 3- now , we need to install Prometheus using the following command:
 
 helm install prometheus prometheus-community/prometheus -n monitoring 
 
+to skip creating PV , PVC to be start promenthous without issue related to the limitation of vagarnt file  using minimal-values.yml 
+
 helm upgrade prometheus prometheus-community/prometheus -n monitoring -f minimal-values.yaml
 
-to skip creating PV , PVC to be start promenthous without issue related to the limitation of vagarnt file .
+
 
 <img width="1902" height="907" alt="image" src="https://github.com/user-attachments/assets/6f1157cc-6c7f-4b03-b748-6a6485cba952" />
 
-1. Patch the Prometheus service to NodePort as it is locally only 
+## 3-Patch the Prometheus service to NodePort as it is locally only .
 
 <img width="1087" height="145" alt="image" src="https://github.com/user-attachments/assets/0771bd3d-cc55-4bd2-b9c9-cf4887486e67" />
 
@@ -84,7 +86,8 @@ kubectl -n monitoring patch svc prometheus-server -p '{"spec": {"type": "NodePor
 
 <img width="1908" height="952" alt="image" src="https://github.com/user-attachments/assets/137baf4e-d598-49b0-99d9-7ed225e1fef8" />
 
-use 315 → Kubernetes cluster monitoring (via Prometheus)
+
+choose 315 ID  → Kubernetes cluster monitoring (via Prometheus)
 
 
 ### Graphana using helm 
@@ -111,7 +114,7 @@ kubectl get svc grafana -n monitoring
 
 <img width="1886" height="922" alt="image" src="https://github.com/user-attachments/assets/2d7a9a9c-aabc-41a2-aa15-b730dbedb785" />
 
-## integrate graphana with promethous : 
+## Integrate graphana with promethous : 
 
 add user name : admin with password admin and change password to be admin123 
 

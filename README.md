@@ -70,14 +70,11 @@ to skip creating PV , PVC to be start promenthous without issue related to the l
 
 helm upgrade prometheus prometheus-community/prometheus -n monitoring -f minimal-values.yaml
 
-
-
 <img width="1902" height="907" alt="image" src="https://github.com/user-attachments/assets/6f1157cc-6c7f-4b03-b748-6a6485cba952" />
 
 ## 3-Patch the Prometheus service to NodePort as it is locally only .
 
 <img width="1087" height="145" alt="image" src="https://github.com/user-attachments/assets/0771bd3d-cc55-4bd2-b9c9-cf4887486e67" />
-
 
 kubectl -n monitoring patch svc prometheus-server -p '{"spec": {"type": "NodePort"}}'
 
@@ -86,11 +83,7 @@ kubectl -n monitoring patch svc prometheus-server -p '{"spec": {"type": "NodePor
 
 <img width="1908" height="952" alt="image" src="https://github.com/user-attachments/assets/137baf4e-d598-49b0-99d9-7ed225e1fef8" />
 
-
-choose 315 ID  → Kubernetes cluster monitoring (via Prometheus)
-
-
-### Graphana using helm 
+## 4- Graphana using helm 
 
 helm install grafana grafana/grafana \
 
@@ -114,7 +107,7 @@ kubectl get svc grafana -n monitoring
 
 <img width="1886" height="922" alt="image" src="https://github.com/user-attachments/assets/2d7a9a9c-aabc-41a2-aa15-b730dbedb785" />
 
-## Integrate graphana with promethous : 
+#### 5-  Integrate graphana with promethous : 
 
 add user name : admin with password admin and change password to be admin123 
 
@@ -125,7 +118,7 @@ add user name : admin with password admin and change password to be admin123
 <img width="1872" height="936" alt="image" src="https://github.com/user-attachments/assets/5ee3539a-ba57-45e0-8cb8-33cc977d4562" />
 
 
-Download Json File for specicifc dashboard and import it 
+Download Json File for specicifc dashboard and import it or use 315 ID  → Kubernetes cluster monitoring (via Prometheus)
 
 
 <img width="1886" height="926" alt="image" src="https://github.com/user-attachments/assets/5368c382-f49b-4ddd-bf65-250cbb281a0a" />
@@ -133,7 +126,7 @@ Download Json File for specicifc dashboard and import it
   
   ### Issue :
 
-1- we should make sure from Kube-flannel is instalaltion well to create pods well 
+1- we should make sure from Kube-flannel is instalaltion well to can create pods .
 
 [root@master01 ~]# kubectl get pods -n kube-flannel
 
@@ -145,7 +138,7 @@ kube-flannel-ds-hxnpz   1/1     Running   0          28s
 
 kube-flannel-ds-zsvck   1/1     Running   0          28s
 
-2- related to the limitation of vagrant to create PV and  PVC  cretae yaml file to skip the issue of cresation promethous 
+2- Related to the limitation of vagrant to create PV and  PVC  cretae yaml file to skip the issue of cresation promethous 
 
 [root@master01 ~]# cat minimal-values.yaml
 
@@ -166,7 +159,6 @@ pushgateway:
   persistentVolume:
 
     enabled: false
-
 
 3- i have issue with flannel cni 
 

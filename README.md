@@ -72,7 +72,7 @@ helm upgrade prometheus prometheus-community/prometheus -n monitoring -f minimal
 
 <img width="1902" height="907" alt="image" src="https://github.com/user-attachments/assets/6f1157cc-6c7f-4b03-b748-6a6485cba952" />
 
-## 3-Patch the Prometheus service to NodePort as it is locally only .
+## 4-Patch the Prometheus service to NodePort as it is locally only .
 
 <img width="1087" height="145" alt="image" src="https://github.com/user-attachments/assets/0771bd3d-cc55-4bd2-b9c9-cf4887486e67" />
 
@@ -83,7 +83,7 @@ kubectl -n monitoring patch svc prometheus-server -p '{"spec": {"type": "NodePor
 
 <img width="1908" height="952" alt="image" src="https://github.com/user-attachments/assets/137baf4e-d598-49b0-99d9-7ed225e1fef8" />
 
-## 4- Graphana using helm 
+## 5- Graphana using helm 
 
 helm install grafana grafana/grafana \
 
@@ -107,7 +107,7 @@ kubectl get svc grafana -n monitoring
 
 <img width="1886" height="922" alt="image" src="https://github.com/user-attachments/assets/2d7a9a9c-aabc-41a2-aa15-b730dbedb785" />
 
-#### 5-  Integrate graphana with promethous : 
+## 6-  Integrate graphana with promethous : 
 
 add user name : admin with password admin and change password to be admin123 
 
